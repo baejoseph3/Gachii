@@ -5,7 +5,7 @@
 - Produced migration planning artifacts **outside** `OriginalFiles/`.
 - This phase contains discovery/planning only (no iOS runtime implementation yet).
 - This is Phase 0 output (discovery report)
-- Canonical migration instructions live in docs/MIGRAT
+- Canonical migration instructions live in docs/MIGRATION_SPECS.md
 
 ---
 
