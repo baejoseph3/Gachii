@@ -4,11 +4,12 @@ struct HomeView: View {
     @State var viewModel: HomeViewModel
 
     var body: some View {
-        content
-            .padding(DesignTokens.Spacing.md)
-            .task {
-                await viewModel.load()
-            }
+        ScreenContainer {
+            content
+        }
+        .task {
+            await viewModel.load()
+        }
     }
 
     @ViewBuilder
@@ -16,33 +17,47 @@ struct HomeView: View {
         switch viewModel.state {
         case .loading:
             ProgressView("Loading…")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, minHeight: 220)
+
         case .empty:
-            ContentUnavailableView(
+            HeaderBlock(
                 "No Data",
-                systemImage: "tray",
-                description: Text("There is nothing to show yet.")
+                subtitle: "There is nothing to show yet."
             )
+
         case .success(let title):
-            VStack(alignment: .leading, spacing: DesignTokens.Spacing.md) {
-                Label(title, systemImage: "checkmark.seal.fill")
-                    .font(.headline)
-                    .accessibilityLabel("Loaded successfully")
-                Text("Use this feature folder as the starting point for migrated modules.")
-                    .foregroundStyle(.secondary)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-        case .error(let message):
-            VStack(spacing: DesignTokens.Spacing.md) {
-                Text(message)
-                    .multilineTextAlignment(.center)
-                Button("Retry") {
-                    Task { await viewModel.retry() }
+            HeaderBlock(
+                "Home",
+                subtitle: "Use this feature folder as the starting point for migrated modules."
+            )
+
+            CardContainer {
+                HStack(spacing: SpacingTokens.xs) {
+                    DSIcon(systemName: "checkmark.seal.fill", style: .prominent)
+                    Text(title)
+                        .font(TypographyTokens.headline)
+                        .foregroundStyle(ColorTokens.Text.primary)
+                        .accessibilityLabel("Loaded successfully")
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+
+                ChipBadge("Synced", role: .success, systemImage: "checkmark.circle.fill")
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            VStack(spacing: SpacingTokens.sm) {
+                Button("Primary Action") {}
+                    .buttonStyle(.ds(.primary))
+
+                Button("Secondary Action") {}
+                    .buttonStyle(.ds(.secondary))
+            }
+
+        case .error(let message):
+            HeaderBlock("Something went wrong", subtitle: LocalizedStringKey(message))
+
+            Button("Retry") {
+                Task { await viewModel.retry() }
+            }
+            .buttonStyle(.ds(.destructive))
         }
     }
 }
