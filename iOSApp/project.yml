@@ -1,0 +1,40 @@
+name: Gachii
+options:
+  deploymentTarget:
+    iOS: 16.0
+settings:
+  base:
+    SWIFT_VERSION: 5.9
+    PRODUCT_BUNDLE_IDENTIFIER: com.example.gachii
+    TARGETED_DEVICE_FAMILY: "1,2"
+    SUPPORTS_MACCATALYST: NO
+configs:
+  Debug: debug
+  Release: release
+packages: {}
+targets:
+  GachiiApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: App
+      - path: Core
+      - path: DesignSystem
+      - path: Features
+    settings:
+      base:
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+    scheme:
+      testTargets:
+        - GachiiTests
+  GachiiTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: GachiiTests
+    dependencies:
+      - target: GachiiApp
