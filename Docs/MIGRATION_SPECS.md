@@ -89,7 +89,9 @@ You must follow these rules:
 ## Required iOS Architecture & Coding Standards
 
 ### Stack
-- Swift 5.9+
+- Xcode 26+
+- Swift 6.0+
+- iOS 26.0+ deployment target (latest stable baseline)
 - SwiftUI + MVVM (or Clean Architecture style)
 - Async/await
 - Centralized API/data layer
