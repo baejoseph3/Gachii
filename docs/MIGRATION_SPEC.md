@@ -1,7 +1,16 @@
-# Phase 0 — Discovery, Feature Parity, and Supabase Migration Blueprint
+# MIGRATION_SPEC
 
-> **Note (canonical docs split):** The canonical migration source now lives in `/docs/MIGRATION_SPEC.md` and companion docs in `/docs`. This Phase 0 file is retained for historical reference.
+## Source of Truth
+This migration is now split across the following documents under `/docs`:
+- `MIGRATION_SPEC.md` (constitution: goals, constraints, standards, phases, and definition of done)
+- `FEATURE_INVENTORY.md` (canonical per-view feature parity checklist)
+- `DATA_AND_API_MAP.md` (schema/data model map and backend/API migration mapping)
+- `OPEN_QUESTIONS.md` (open questions, risks, and assumptions)
+- `WEB_ONLY_DROPS.md` (web/PWA-specific logic and Firebase web messaging touchpoints to remove/replace)
 
+Future phases must follow these documents and keep them updated as decisions are made.
+
+---
 
 ## Scope and constraints followed
 - Audited legacy implementation **only** from `OriginalFiles/` as migration source-of-truth.
@@ -27,29 +36,6 @@
 - Progress: `OriginalFiles/src/components/views/ProgressView.jsx`
 - Profile: `OriginalFiles/src/components/views/ProfileView.jsx`
 
-### Backend/services audit (legacy Vercel + Postgres)
-- API surface via `OriginalFiles/src/services/api.js` under `/api/*`.
-- Serverless handlers (action multiplexer pattern) under:
-  - `OriginalFiles/api/auth/[action].js`
-  - `OriginalFiles/api/workouts/[action].js`
-  - `OriginalFiles/api/exercises/[action].js`
-  - `OriginalFiles/api/custom-routines/[action].js`
-  - `OriginalFiles/api/friends/[action].js`
-  - `OriginalFiles/api/scheduled-workouts/[action].js`
-  - `OriginalFiles/api/notifications/[action].js`
-  - `OriginalFiles/api/achievements/[action].js`
-  - `OriginalFiles/api/admin/[action].js`
-- Shared server libs in `OriginalFiles/api/_lib/*` (auth, response envelope, workout hydration).
-- DB client uses `pg` + `DATABASE_URL` in `OriginalFiles/src/db/client.js`.
-
-### DB schema and data model signals
-- `OriginalFiles/src/db/schema_updates.sql` is treated as a **historical hint**, not guaranteed source-of-truth.
-- Source-of-truth for migration execution should come from a fresh schema export directly from Neon at migration time.
-- From repository evidence, explicitly created tables in the tracked SQL include:
-  - `workout_comments`, `push_tokens`, `friend_notification_settings`, `scheduled_workouts`, `custom_routines`, `exercises`, `achievement_definitions`, `user_achievements`.
-- Additional strongly implied core tables referenced by API queries:
-  - `users`, `workouts`, `workout_exercises`, `exercise_sets`, `friendships`.
-
 ### Runtime/deployment config signals
 - Vite SPA + serverless APIs (`OriginalFiles/package.json`, `OriginalFiles/vite.config.js`).
 - Vercel commit SHA used in versioning (`VERCEL_GIT_COMMIT_SHA`).
@@ -57,75 +43,6 @@
   - `OriginalFiles/src/services/pushNotifications.js`
   - `OriginalFiles/public/firebase-messaging-sw.js`
   - `OriginalFiles/public/manifest.webmanifest`
-
----
-
-## Per-View Feature Checklist (Phase 0 exhaustive discovery)
-Status legend for Phase 0: **discovered** (nothing implemented in iOS yet).
-
-### 1) WorkoutView (canonical target; includes legacy Dashboard workout home)
-- [discovered] Start new workout / continue active workout.
-- [discovered] Active workout timer, pause/resume behavior, elapsed persistence.
-- [discovered] Add exercise from grouped library and search.
-- [discovered] Create custom exercise from add-exercise flow.
-- [discovered] Swap exercises in-place.
-- [discovered] Strength and cardio set entry (reps/weight or duration/distance).
-- [discovered] Remove set / remove exercise / reorder exercise.
-- [discovered] Unit toggle for cardio distance.
-- [discovered] Per-exercise notes.
-- [discovered] Finish workout with optional share-to-feed.
-- [discovered] Workout history list with edit/delete/repeat.
-- [discovered] Pull-to-refresh on workout home.
-- [discovered] Today scheduled workout quick-start.
-- [discovered] Routine management flow (list/create/edit/delete/start routine).
-- [discovered] Routine exercise picker with search + grouped folders.
-- [discovered] Manage exercise library entry point.
-
-### 2) SocialView
-- [discovered] Feed tab for friends’ workouts.
-- [discovered] Pull-to-refresh on feed.
-- [discovered] Workout comments add/delete in feed cards.
-- [discovered] Friends tab with friend list.
-- [discovered] Add tab with user search by username/email.
-- [discovered] Send friend requests.
-- [discovered] View/respond to incoming friend requests.
-- [discovered] Friend profile modal with stats.
-- [discovered] Remove friend flow with confirmation modal.
-- [discovered] Per-friend workout notification toggle.
-
-### 3) CalendarView
-- [discovered] Week-strip calendar browsing with day selection.
-- [discovered] Daily timeline combining scheduled + logged workouts.
-- [discovered] Create scheduled workout with title/date/time/duration.
-- [discovered] Invite/select friends for scheduled workout.
-- [discovered] Build planned exercises for scheduled workout.
-- [discovered] Exercise list flow with grouped folders + search.
-- [discovered] Inline create custom exercise modal in planning flow.
-- [discovered] Delete scheduled workout.
-- [discovered] Choose workout from custom routines.
-- [discovered] Create routine from calendar path.
-- [discovered] Full-screen flow state propagation to parent shell.
-
-### 4) ProgressView
-- [discovered] Aggregate metrics cards:
-  - total workouts,
-  - weekly workouts,
-  - total volume,
-  - weekly volume.
-- [discovered] Non-functional placeholder buttons:
-  - “Exercise Progress”,
-  - “Exercise History”.
-
-### 5) ProfileView
-- [discovered] User profile header.
-- [discovered] Settings sheet/modal with logout.
-- [discovered] Toggle share workouts preference.
-- [discovered] Push enable/disable actions + status display.
-- [discovered] Achievement list with filters (achieved/not achieved/all).
-- [discovered] Achievement loading/error/retry states.
-- [discovered] Conditional admin tooling entrypoint from Profile settings (admin users only).
-- [discovered] Admin area scope separation (initial iOS admin scope is read-only observability; all mutations deferred).
-- [discovered] Notification permission UX requirement for single pre-permission soft ask screen with approved copy/actions.
 
 ---
 
@@ -153,56 +70,7 @@ Status legend for Phase 0: **discovered** (nothing implemented in iOS yet).
 
 ---
 
-## PWA/browser-only logic to drop in native iOS
-- Service worker registration + messaging bootstrap.
-- `firebase-messaging-sw.js` runtime behavior.
-- Web app manifest install model (`manifest.webmanifest`).
-- Browser localStorage token handling and active-workout snapshot handling (replace with Keychain + native persistence).
-- Browser/mobile UA detection hooks (`useIsMobile`) and desktop/mobile split rendering.
-- Touch-based custom pull-to-refresh mechanics tied to `window.scrollY`.
-- Any visibility/reload/browser lifecycle mitigation patterns tied to PWA runtime assumptions.
-
----
-
-## Firebase touchpoints to replace with iOS-native notifications
-- Frontend Firebase initialization and messaging support checks in `src/services/pushNotifications.js`.
-- Public service worker push/click handlers in `public/firebase-messaging-sw.js`.
-- Backend Firebase Admin multicast sender in `api/notifications/firebase.js` and admin push test path in `api/admin/[action].js`.
-- Token register/unregister endpoint contracts in `api/notifications/[action].js` should be replaced with APNs/Supabase-compatible device registration model.
-
----
-
-## Backend/infrastructure dependency inventory (Vercel + Neon posture)
-
-### Auth/session
-- JWT access token signed with `JWT_SECRET` in auth API.
-- Token persisted client-side in `localStorage` under `authToken`.
-- Auth validation via Bearer token in API handlers.
-- Additional inactivity-session semantics in `api/_lib/auth.js` via `users.last_active_at`.
-
-### API surfaces currently used by frontend
-- `auth`: login/register/me/settings
-- `workouts`: save/list/update/comment(delete/add)/delete
-- `friends`: search/send-request/requests/respond/list/notifications/profile/feed/remove
-- `exercises`: list/save/update/delete
-- `custom-routines`: list/save/update/delete
-- `scheduled-workouts`: list/create/delete
-- `achievements`: list/definition (admin write path)
-- `admin`: list/add/remove/push-test
-- `notifications`: register-token/unregister-token
-
-### Data access pattern
-- Direct SQL in handlers through pooled `pg` client.
-- Some transactional writes (e.g., workout save with exercises + sets).
-- Server-side fan-out push logic after workout save/friend request.
-
-### Environment contract
-- Frontend env: Firebase web keys (`VITE_FIREBASE_*`) + build version (`VITE_APP_VERSION`).
-- Backend env: `DATABASE_URL`, `JWT_SECRET`, Firebase service account JSON.
-
----
-
-## Vercel + Neon → Supabase migration blueprint
+## Architecture standards and migration blueprint
 
 ### 1) Target architecture
 - iOS app (SwiftUI) uses Supabase client with:
@@ -300,6 +168,29 @@ Status legend for Phase 0: **discovered** (nothing implemented in iOS yet).
 
 ---
 
+## Phase plan
+- Phase 0: discovery/planning only (complete).
+- Later phases: execute migration and iOS implementation according to this split documentation set.
+
+## Required output format (for future phases)
+- Keep canonical view naming: `WorkoutView`, `SocialView`, `CalendarView`, `ProgressView`, `ProfileView`.
+- Keep updates split by document role:
+  - feature changes in `FEATURE_INVENTORY.md`,
+  - data/API changes in `DATA_AND_API_MAP.md`,
+  - decisions/risks/questions in `OPEN_QUESTIONS.md`,
+  - web/PWA removals in `WEB_ONLY_DROPS.md`,
+  - constitutional updates in `MIGRATION_SPEC.md`.
+
+## Definition of done
+- Migration work is done only when:
+  - parity features are implemented per agreed status transitions,
+  - Supabase schema/RLS/API replacements are in place,
+  - web-only/PWA logic is removed from native scope,
+  - unresolved questions are closed or explicitly deferred with phase ownership,
+  - docs in `/docs` reflect the current, accurate state.
+
+---
+
 ## Docs vs Source Discrepancy Report
 
 1. README claims Progress view loads achievements; source shows achievements loaded in **ProfileView**, while `ProgressView` only shows computed workout metrics.
@@ -317,8 +208,3 @@ Status legend for Phase 0: **discovered** (nothing implemented in iOS yet).
 - Reports/flags queue is out of scope for v1 (no reports/flags entity planned in initial schema).
 - Social feed is intentionally workout-centric only (current user and friends' workouts) and does not include arbitrary/free-form user posts.
 - Supabase migration may fully transition to UUID identifiers.
-
----
-
-## Open questions / assumptions blocking later phases
-- None at this time for Phase 0 scope. Admin observability remains intentionally basic for v1 and advanced metrics are deferred to a later phase.
