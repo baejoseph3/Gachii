@@ -26,7 +26,7 @@ final class AppContainer {
         self.profileRepository = profileRepository
     }
 
-    static let live = AppContainer(
+    @MainActor static let live = AppContainer(
         authSession: InMemoryAuthSession(),
         workoutRepository: StubWorkoutRepository(),
         socialRepository: StubSocialRepository(),
