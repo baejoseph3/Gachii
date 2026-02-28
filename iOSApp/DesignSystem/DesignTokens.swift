@@ -2,13 +2,13 @@ import SwiftUI
 
 enum DesignTokens {
     enum Spacing {
-        static let xs: CGFloat = 4
-        static let sm: CGFloat = 8
-        static let md: CGFloat = 16
-        static let lg: CGFloat = 24
+        static let xs = SpacingTokens.xs
+        static let sm = SpacingTokens.sm
+        static let md = SpacingTokens.md
+        static let lg = SpacingTokens.lg
     }
 
     enum Radius {
-        static let card: CGFloat = 12
+        static let card = SurfaceTokens.Radius.md
     }
 }
