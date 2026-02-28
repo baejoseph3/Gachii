@@ -8,5 +8,5 @@ final class DependencyContainer {
         self.uuid = uuid
     }
 
-    static let live = DependencyContainer(uuid: UUID.init)
+    @MainActor static let live = DependencyContainer(uuid: UUID.init)
 }
