@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* iOS Safe Area Support */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .pt-safe-top {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .pb-safe-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+}
+
+/* Force dark background in safe areas */
+body {
+    background-color: #111827; /* gray-900 */
+}
+
+/* Prevent white gaps on notch devices */
+html, body, #root {
+    background-color: #111827; /* gray-900 */
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+/* Shared medium text utility for header subtext */
+.text-m {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
