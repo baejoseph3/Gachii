@@ -90,7 +90,7 @@ You must follow these rules:
 
 ### Stack
 - Swift 6.0+
-- iOS 18.0+ deployment target (latest stable baseline)
+- iOS 26.0+ deployment target (latest stable baseline)
 - SwiftUI + MVVM (or Clean Architecture style)
 - Async/await
 - Centralized API/data layer

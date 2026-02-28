@@ -4,9 +4,9 @@ This directory contains the native iOS SwiftUI migration target. `OriginalFiles/
 
 ## Requirements
 
-- Xcode 16+
+- Xcode 18+ (latest stable)
 - Swift 6.0+
-- iOS deployment target: 18.0+
+- iOS deployment target: 26.0+
 
 ## Build / Run
 
