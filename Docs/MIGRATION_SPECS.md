@@ -44,7 +44,7 @@ The app has five primary user-facing views. Use these names consistently in code
 5. `ProfileView`
 
 **Naming correction requirement:**
-- If the current codebase uses `DashboardView` to represent the workout screen, rename it to `WorkoutView` and update all references (routes, coordinators, tests, previews, and file names).
+- If the current codebase uses a legacy workout-home view name, rename it to `WorkoutView` and update all references (routes, coordinators, tests, previews, and file names).
 - Avoid legacy naming aliases after migration unless required for temporary compatibility during phased refactors.
 
 ## Audit Ground Truth Rule (Do Not Rely Solely on README)
@@ -73,7 +73,7 @@ You must follow these rules:
 
 - Do **not** do a big-bang rewrite.
 - Implement migration by view/feature slices in priority order, not all at once.
-- Enforce canonical naming: `WorkoutView`, `SocialView`, `CalendarView`, `ProgressView`, `ProfileView` (rename legacy `DashboardView` to `WorkoutView`).
+- Enforce canonical naming: `WorkoutView`, `SocialView`, `CalendarView`, `ProgressView`, `ProfileView` (rename any legacy workout-home name to `WorkoutView`).
 - Work in phases and stop after each phase with implementation summary + build/test status.
 - Audit only `OriginalFiles/` for legacy discovery; write all new app code outside `OriginalFiles/`.
 - Replace Firebase web notification implementation with **native iOS notifications** (`UserNotifications`, APNs flow as needed).
@@ -232,7 +232,7 @@ After each phase, output:
    - shared card spacing,
    - safe-area screen container.
 4. Build base shared UI primitives (chip cards, buttons, colors, titles, icon styles) in `DesignSystem`.
-5. Perform foundational naming cleanup: rename legacy `DashboardView` artifacts to `WorkoutView` artifacts and update references.
+5. Perform foundational naming cleanup: rename legacy workout-home artifacts to `WorkoutView` artifacts and update references.
 
 ### Phase 2 — Supabase Core Integration
 1. Configure Supabase client layer in iOS.
@@ -270,7 +270,7 @@ For each view, complete all steps before moving to the next view:
 4. Wire navigation/deep links and shared reusable flows.
 5. Add tests.
 6. Validate against Supabase backend.
-7. Check naming consistency (no legacy `DashboardView` references for workout features).
+7. Check naming consistency (no legacy workout-home references for workout features).
 
 Do not begin next view until current view passes checks.
 
@@ -324,7 +324,7 @@ Migration is complete only when all are true:
 - Full-scope audit coverage is completed across original frontend, backend/services, and database integrations, with README/doc discrepancies explicitly resolved.
 - Shared modular design system + reusable layout primitives are in place and used consistently.
 - TailwindCSS/Lucide-derived UI is fully adapted to native SwiftUI design-system primitives and SF Symbols-oriented iconography.
-- Canonical view naming is enforced (`WorkoutView`, `SocialView`, `CalendarView`, `ProgressView`, `ProfileView`), and legacy `DashboardView` naming is removed or fully migrated.
+- Canonical view naming is enforced (`WorkoutView`, `SocialView`, `CalendarView`, `ProgressView`, `ProfileView`), and legacy workout-home naming is removed or fully migrated.
 - Repeated-entry flows are implemented via shared reusable flow/screen logic wherever a destination is reachable from multiple paths.
 - Backend/data stack is migrated to Supabase (DB + access paths), with RLS and secure secret handling.
 - Firebase web messaging is replaced with native iOS notification handling.

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+legacy_symbol_pattern="Dash""board"
+
+echo "Checking for legacy workout-home symbols outside allowed discovery/source areas..."
+if matches=$(rg -n "$legacy_symbol_pattern" \
+    --glob '!OriginalFiles/**' \
+    --glob '!.git/**' \
+    --glob '!Docs/Phase0_Discovery_Blueprint.md' \
+    .); then
+  echo "❌ Found disallowed legacy workout-home references:"
+  echo "$matches"
+  exit 1
+fi
+
+echo "Checking Workout feature file naming (must start with Workout*)..."
+invalid_files=$(find iOSApp/Features/Workout -type f -name '*.swift' ! -name 'Workout*.swift' | sort || true)
+if [[ -n "$invalid_files" ]]; then
+  echo "❌ Found non-conforming Swift files under iOSApp/Features/Workout/:"
+  echo "$invalid_files"
+  exit 1
+fi
+
+echo "✅ Naming checks passed."

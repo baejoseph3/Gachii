@@ -31,3 +31,20 @@ This directory contains the native iOS SwiftUI migration target. `OriginalFiles/
 
 - Keep business logic in ViewModels/services, not in SwiftUI views.
 - Prefer explicit state enums for loading/empty/error/success flows.
+
+## Workout Feature Naming Guardrails
+
+- New Swift files under `iOSApp/Features/Workout/` must use `Workout*` naming for feature-facing types (views, view models, and routes).
+- Legacy workout-home naming is allowed only in migration discovery documentation and `OriginalFiles/` source citations.
+
+## Repository Checks
+
+From the repository root, run:
+
+```bash
+./scripts/check_no_legacy_dashboard_symbols.sh
+```
+
+This check fails if:
+- new legacy workout-home symbols are introduced outside `OriginalFiles/` and discovery documentation, or
+- a Swift file in `iOSApp/Features/Workout/` does not start with `Workout`.
