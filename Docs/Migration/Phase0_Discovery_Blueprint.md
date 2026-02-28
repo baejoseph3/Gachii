@@ -1,8 +1,5 @@
 # Phase 0 — Discovery, Feature Parity, and Supabase Migration Blueprint
 
-> **Note (canonical docs split):** The canonical migration source now lives in `/docs/MIGRATION_SPEC.md` and companion docs in `/docs`. This Phase 0 file is retained for historical reference.
-
-
 ## Scope and constraints followed
 - Audited legacy implementation **only** from `OriginalFiles/` as migration source-of-truth.
 - Produced migration planning artifacts **outside** `OriginalFiles/`.
