@@ -2,11 +2,11 @@ import SwiftUI
 
 @main
 struct GachiiApp: App {
-    @State private var container = DependencyContainer.live
+    @State private var container = AppContainer.live
 
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootShellView(container: container)
                 .environment(container)
         }
     }
