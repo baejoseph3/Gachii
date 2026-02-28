@@ -143,6 +143,16 @@ Status legend for Phase 0: **discovered** (nothing implemented in iOS yet).
 | Progress metrics cards | `ProgressView` | P2 |
 | Admin tools | Guarded admin flow from `ProfileView` settings; v1 scope = read-only observability dashboards only | P2 |
 
+### Legacy workout-home concept mapping (explicit)
+
+| Legacy concept (discovery-only reference) | `WorkoutView` feature-domain target |
+|---|---|
+| Workout landing surface (legacy entry view) | `WorkoutRootView` (feature root / list state) |
+| Start workout CTA and quick actions | `WorkoutStartView` route in Workout navigation graph |
+| Recent workout summaries | `WorkoutHistoryListView` within Workout domain |
+| Routine shortcuts and routine launch | `WorkoutRoutineListView` + `WorkoutRoutineDetailView` |
+| In-progress workout handoff to active session | `WorkoutActiveSessionView` + `WorkoutSessionViewModel` |
+
 **Admin v1 read-only observability scope**
 - Users list (read-only): `id`, `displayName`, `username`, `role`, `createdAt`, `lastActiveAt`, `status` (`email` only if operationally required).
 - Workouts list (read-only): `id`, `user`, `occurredAt`, `type/title`, `duration`, `exerciseCount`, `createdAt`.
