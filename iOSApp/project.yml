@@ -1,10 +1,10 @@
 name: Gachii
 options:
   deploymentTarget:
-    iOS: 16.0
+    iOS: 18.0
 settings:
   base:
-    SWIFT_VERSION: 5.9
+    SWIFT_VERSION: 6.0
     PRODUCT_BUNDLE_IDENTIFIER: com.example.gachii
     TARGETED_DEVICE_FAMILY: "1,2"
     SUPPORTS_MACCATALYST: NO
@@ -16,7 +16,7 @@ targets:
   GachiiApp:
     type: application
     platform: iOS
-    deploymentTarget: "16.0"
+    deploymentTarget: "18.0"
     sources:
       - path: App
       - path: Core
@@ -33,7 +33,7 @@ targets:
   GachiiTests:
     type: bundle.unit-test
     platform: iOS
-    deploymentTarget: "16.0"
+    deploymentTarget: "18.0"
     sources:
       - path: GachiiTests
     dependencies:
