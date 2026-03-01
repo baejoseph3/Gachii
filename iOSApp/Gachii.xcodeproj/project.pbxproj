@@ -21,6 +21,14 @@
 		1A5555555555555555555555 /* CalendarRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5555555555555555555555 /* CalendarRootView.swift */; };
 		1A6666666666666666666666 /* ProgressRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6666666666666666666666 /* ProgressRootView.swift */; };
 		1A7777777777777777777777 /* ProfileRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7777777777777777777777 /* ProfileRootView.swift */; };
+		1A8888888888888888888888 /* WorkoutRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8888888888888888888888 /* WorkoutRootViewModel.swift */; };
+		1A9999999999999999999991 /* LayoutWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9999999999999999999991 /* LayoutWrappers.swift */; };
+		1A9999999999999999999992 /* SharedControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9999999999999999999992 /* SharedControls.swift */; };
+		1A9999999999999999999993 /* SpacingTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9999999999999999999993 /* SpacingTokens.swift */; };
+		1A9999999999999999999994 /* ColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9999999999999999999994 /* ColorTokens.swift */; };
+		1A9999999999999999999995 /* TypographyTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9999999999999999999995 /* TypographyTokens.swift */; };
+		1A9999999999999999999996 /* SurfaceTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9999999999999999999996 /* SurfaceTokens.swift */; };
+		1ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +58,14 @@
 		2A5555555555555555555555 /* CalendarRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRootView.swift; sourceTree = "<group>"; };
 		2A6666666666666666666666 /* ProgressRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRootView.swift; sourceTree = "<group>"; };
 		2A7777777777777777777777 /* ProfileRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRootView.swift; sourceTree = "<group>"; };
+		2A8888888888888888888888 /* WorkoutRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRootViewModel.swift; sourceTree = "<group>"; };
+		2A9999999999999999999991 /* LayoutWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutWrappers.swift; sourceTree = "<group>"; };
+		2A9999999999999999999992 /* SharedControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedControls.swift; sourceTree = "<group>"; };
+		2A9999999999999999999993 /* SpacingTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTokens.swift; sourceTree = "<group>"; };
+		2A9999999999999999999994 /* ColorTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokens.swift; sourceTree = "<group>"; };
+		2A9999999999999999999995 /* TypographyTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyTokens.swift; sourceTree = "<group>"; };
+		2A9999999999999999999996 /* SurfaceTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceTokens.swift; sourceTree = "<group>"; };
+		2ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRootViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -66,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB0898F9450DC7C1CE8EA1E /* HomeViewModelTests.swift */,
+				2ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift */,
 			);
 			path = GachiiTests;
 			sourceTree = "<group>";
@@ -116,7 +133,9 @@
 		A05841E327E78618A26B1667 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				3B9999999999999999999991 /* Components */,
 				9380BAA2930E0CBE00CFB781 /* DesignTokens.swift */,
+				3B9999999999999999999992 /* Tokens */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -144,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				2A3333333333333333333333 /* WorkoutRootView.swift */,
+				2A8888888888888888888888 /* WorkoutRootViewModel.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -178,6 +198,26 @@
 				2A7777777777777777777777 /* ProfileRootView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		3B9999999999999999999991 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2A9999999999999999999991 /* LayoutWrappers.swift */,
+				2A9999999999999999999992 /* SharedControls.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3B9999999999999999999992 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				2A9999999999999999999994 /* ColorTokens.swift */,
+				2A9999999999999999999993 /* SpacingTokens.swift */,
+				2A9999999999999999999996 /* SurfaceTokens.swift */,
+				2A9999999999999999999995 /* TypographyTokens.swift */,
+			);
+			path = Tokens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,11 +291,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A9999999999999999999994 /* ColorTokens.swift in Sources */,
+				1A9999999999999999999991 /* LayoutWrappers.swift in Sources */,
 				8B3E220D82BB34B3306DE9E2 /* DependencyContainer.swift in Sources */,
 				DF56F7B34F61EF31E4FBE2AD /* DesignTokens.swift in Sources */,
 				1060F4D75409ABED48DF704B /* GachiiApp.swift in Sources */,
 				0873AEBDC779F4163579D9F3 /* HomeView.swift in Sources */,
 				D36D40F161A7B95B5BB0CCD4 /* HomeViewModel.swift in Sources */,
+				1A9999999999999999999992 /* SharedControls.swift in Sources */,
+				1A9999999999999999999993 /* SpacingTokens.swift in Sources */,
+				1A9999999999999999999996 /* SurfaceTokens.swift in Sources */,
+				1A9999999999999999999995 /* TypographyTokens.swift in Sources */,
 				1A2222222222222222222222 /* AppContainer.swift in Sources */,
 				1A1111111111111111111111 /* Dependencies.swift in Sources */,
 				1A5555555555555555555555 /* CalendarRootView.swift in Sources */,
@@ -263,6 +309,7 @@
 				1A6666666666666666666666 /* ProgressRootView.swift in Sources */,
 				1A4444444444444444444444 /* SocialRootView.swift in Sources */,
 				1A3333333333333333333333 /* WorkoutRootView.swift in Sources */,
+				1A8888888888888888888888 /* WorkoutRootViewModel.swift in Sources */,
 				411AE6CB2FDB2FC272E27C34 /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				252847859EF69FF523363B2A /* HomeViewModelTests.swift in Sources */,
+				1ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +342,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +360,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,7 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -342,7 +390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,7 +448,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.gachii;
@@ -409,7 +457,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -466,7 +514,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -476,7 +524,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
