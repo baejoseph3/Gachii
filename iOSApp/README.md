@@ -4,9 +4,9 @@ This directory contains the native iOS SwiftUI migration target. `OriginalFiles/
 
 ## Requirements
 
-- Xcode 26+
-- Swift 6.0+
-- iOS deployment target: 26.0+
+- Xcode 15+
+- Swift 5.9+
+- iOS deployment target: 17.0+
 
 ## Build / Run
 
@@ -31,6 +31,7 @@ This directory contains the native iOS SwiftUI migration target. `OriginalFiles/
 
 - Keep business logic in ViewModels/services, not in SwiftUI views.
 - Prefer explicit state enums for loading/empty/error/success flows.
+- Phase tracking/reporting for migration foundation is documented in `Docs/Phase1_Foundation_Report.md`.
 
 ## Workout Feature Naming Guardrails
 
