@@ -22,6 +22,9 @@ Establish a compile-safe iOS migration foundation outside `OriginalFiles/` with:
 5. **Phase 1 extension (incremental, compile-safe)**:
    - Added `WorkoutRootViewModel` state machine and tests,
    - Updated `WorkoutRootView` to consume explicit state and shared design primitives.
+6. **Phase 1 integration audit closeout (based on Phase 0 findings)**:
+   - Removed non-canonical `Home` feature artifacts to align with the five-view canonical map (`WorkoutView`, `SocialView`, `CalendarView`, `ProgressView`, `ProfileView`).
+   - Expanded naming guardrails to fail on deprecated `HomeView` symbols/directories.
 
 ## 3. **Files Added/Changed**
 ### Newly created outside `OriginalFiles/`
@@ -40,6 +43,11 @@ Establish a compile-safe iOS migration foundation outside `OriginalFiles/` with:
 - `iOSApp/project.yml`
 - `iOSApp/Gachii.xcodeproj/project.pbxproj`
 - `scripts/check_no_legacy_dashboard_symbols.sh`
+
+### Removed outside `OriginalFiles/`
+- `iOSApp/Features/Home/HomeView.swift`
+- `iOSApp/Features/Home/HomeViewModel.swift`
+- `iOSApp/GachiiTests/HomeViewModelTests.swift`
 
 ### `OriginalFiles/` access policy
 - `OriginalFiles/` remains source-reference only; no files were modified in Phase 1.
@@ -79,6 +87,7 @@ TabView(selection: $selectedTab) {
 - **Assumption:** CI or local macOS/Xcode environment will run canonical `xcodebuild`/`xctest` verification.
 - **Risk:** Current non-Workout feature roots are still placeholders (intended for later phases).
 - **Risk:** Supabase/Auth/notification migration work is intentionally not started in Phase 1 and belongs to later phases per migration sequence.
+- **Resolved drift:** Deprecated `Home` placeholders were removed to prevent canonical naming regression from the Phase 0 Dashboard/Workout conflict.
 
 ## 7. **Next Phase**
 Proceed to **Phase 2 — Supabase Core Integration**:
