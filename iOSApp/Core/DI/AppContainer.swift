@@ -3,6 +3,8 @@ import Observation
 
 @Observable
 final class AppContainer {
+    let appConfig: AppConfigProviding
+    let supabaseClient: SupabaseClientProviding
     let authSession: AuthSessionProviding
     let workoutRepository: WorkoutRepositoryProviding
     let socialRepository: SocialRepositoryProviding
@@ -11,6 +13,8 @@ final class AppContainer {
     let profileRepository: ProfileRepositoryProviding
 
     init(
+        appConfig: AppConfigProviding,
+        supabaseClient: SupabaseClientProviding,
         authSession: AuthSessionProviding,
         workoutRepository: WorkoutRepositoryProviding,
         socialRepository: SocialRepositoryProviding,
@@ -18,6 +22,8 @@ final class AppContainer {
         progressRepository: ProgressRepositoryProviding,
         profileRepository: ProfileRepositoryProviding
     ) {
+        self.appConfig = appConfig
+        self.supabaseClient = supabaseClient
         self.authSession = authSession
         self.workoutRepository = workoutRepository
         self.socialRepository = socialRepository
@@ -26,29 +32,38 @@ final class AppContainer {
         self.profileRepository = profileRepository
     }
 
-    @MainActor static let live = AppContainer(
-        authSession: InMemoryAuthSession(),
-        workoutRepository: StubWorkoutRepository(),
-        socialRepository: StubSocialRepository(),
-        calendarRepository: StubCalendarRepository(),
-        progressRepository: StubProgressRepository(),
-        profileRepository: StubProfileRepository()
-    )
-}
+    @MainActor static let live: AppContainer = {
+        let config = try? AppConfig.fromProcessInfo()
+        let resolvedConfig = config ?? AppConfig(
+            environment: .development,
+            supabase: SupabaseConfiguration(
+                url: URL(string: "https://invalid.local")!,
+                anonKey: ""
+            )
+        )
+        let client: SupabaseClientProviding
+        if let config {
+            let transport = URLSessionSupabaseTransport(config: config.supabase)
+            client = SupabaseClient(transport: transport)
+        } else {
+            client = UnconfiguredSupabaseClient()
+        }
+        let authSession = AuthSessionManager(
+            tokenStore: KeychainSessionTokenStore(),
+            authService: StubSupabaseAuthService()
+        )
 
-final class InMemoryAuthSession: AuthSessionProviding {
-    private var userID: String? = "demo-user"
-
-    var currentUserID: String? { userID }
-    var isAuthenticated: Bool { userID != nil }
-
-    func refreshSession() async throws {
-        // Placeholder for token refresh flow.
-    }
-
-    func signOut() async throws {
-        userID = nil
-    }
+        return AppContainer(
+            appConfig: resolvedConfig,
+            supabaseClient: client,
+            authSession: authSession,
+            workoutRepository: StubWorkoutRepository(),
+            socialRepository: StubSocialRepository(),
+            calendarRepository: StubCalendarRepository(),
+            progressRepository: StubProgressRepository(),
+            profileRepository: StubProfileRepository()
+        )
+    }()
 }
 
 struct StubWorkoutRepository: WorkoutRepositoryProviding {
