@@ -19,6 +19,28 @@ This directory contains the native iOS SwiftUI migration target. `OriginalFiles/
 3. Select the `GachiiApp` scheme and run on an iOS simulator or device.
 4. Run tests with `⌘U` (target: `GachiiTests`).
 
+## Supabase Keys (Phase 2)
+
+You **do not need to enter Supabase keys just to open/build the project foundation** in this phase.
+
+You **do need** to provide environment values before running real Supabase-backed flows:
+
+- `GACHII_ENV` (`development`, `staging`, `production`)
+- `SUPABASE_URL_<ENV>`
+- `SUPABASE_ANON_KEY_<ENV>`
+
+Example (development):
+
+```bash
+GACHII_ENV=development
+SUPABASE_URL_DEVELOPMENT=https://<project-ref>.supabase.co
+SUPABASE_ANON_KEY_DEVELOPMENT=<anon-key>
+```
+
+Important:
+- Never add Supabase service-role keys to the client app.
+- If keys are missing, the app now uses an unconfigured Supabase client mode (safe failure) instead of placeholder credentials.
+
 ## Module Boundaries
 
 - `App/`: app entrypoint + root composition.

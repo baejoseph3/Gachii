@@ -26,6 +26,14 @@
 		1A9999999999999999999995 /* TypographyTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9999999999999999999995 /* TypographyTokens.swift */; };
 		1A9999999999999999999996 /* SurfaceTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9999999999999999999996 /* SurfaceTokens.swift */; };
 		1ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift */; };
+		1AB111111111111111111111 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB111111111111111111111 /* AppEnvironment.swift */; };
+		1AB222222222222222222222 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB222222222222222222222 /* APIError.swift */; };
+		1AB333333333333333333333 /* SupabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB333333333333333333333 /* SupabaseClient.swift */; };
+		1AB444444444444444444444 /* SessionTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB444444444444444444444 /* SessionTokenStore.swift */; };
+		1AB555555555555555555555 /* AuthSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB555555555555555555555 /* AuthSessionManager.swift */; };
+		1AB666666666666666666666 /* AppConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB666666666666666666666 /* AppConfigTests.swift */; };
+		1AB777777777777777777777 /* AuthSessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB777777777777777777777 /* AuthSessionManagerTests.swift */; };
+		1AB888888888888888888888 /* SupabaseClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB888888888888888888888 /* SupabaseClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +68,14 @@
 		2A9999999999999999999995 /* TypographyTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyTokens.swift; sourceTree = "<group>"; };
 		2A9999999999999999999996 /* SurfaceTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceTokens.swift; sourceTree = "<group>"; };
 		2ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRootViewModelTests.swift; sourceTree = "<group>"; };
+		2AB111111111111111111111 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		2AB222222222222222222222 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		2AB333333333333333333333 /* SupabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseClient.swift; sourceTree = "<group>"; };
+		2AB444444444444444444444 /* SessionTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTokenStore.swift; sourceTree = "<group>"; };
+		2AB555555555555555555555 /* AuthSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSessionManager.swift; sourceTree = "<group>"; };
+		2AB666666666666666666666 /* AppConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigTests.swift; sourceTree = "<group>"; };
+		2AB777777777777777777777 /* AuthSessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSessionManagerTests.swift; sourceTree = "<group>"; };
+		2AB888888888888888888888 /* SupabaseClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -75,6 +91,9 @@
 		36AE1B32B0BB1F3562708484 /* GachiiTests */ = {
 			isa = PBXGroup;
 			children = (
+				2AB666666666666666666666 /* AppConfigTests.swift */,
+				2AB777777777777777777777 /* AuthSessionManagerTests.swift */,
+				2AB888888888888888888888 /* SupabaseClientTests.swift */,
 				2ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift */,
 			);
 			path = GachiiTests;
@@ -107,8 +126,12 @@
 		7E6875ECAFBEDE2BF8A3AA0F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3BAAAAAABBBBBBBBCCCCCCCC /* Auth */,
+				3BDDDDDDEEEEEEEEFFFFFFFF /* Config */,
 				8181A14E83BAB31C275ACD5F /* DependencyContainer.swift */,
 				3B1111111111111111111111 /* DI */,
+				3B1212121212121212121212 /* Errors */,
+				3B1313131313131313131313 /* Supabase */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -140,6 +163,39 @@
 				2A1111111111111111111111 /* Dependencies.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		3B1212121212121212121212 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				2AB222222222222222222222 /* APIError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		3B1313131313131313131313 /* Supabase */ = {
+			isa = PBXGroup;
+			children = (
+				2AB333333333333333333333 /* SupabaseClient.swift */,
+			);
+			path = Supabase;
+			sourceTree = "<group>";
+		};
+		3BAAAAAABBBBBBBBCCCCCCCC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2AB555555555555555555555 /* AuthSessionManager.swift */,
+				2AB444444444444444444444 /* SessionTokenStore.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		3BDDDDDDEEEEEEEEFFFFFFFF /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2AB111111111111111111111 /* AppEnvironment.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		3B3333333333333333333333 /* Workout */ = {
@@ -274,6 +330,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AB222222222222222222222 /* APIError.swift in Sources */,
+				1AB555555555555555555555 /* AuthSessionManager.swift in Sources */,
+				1AB111111111111111111111 /* AppEnvironment.swift in Sources */,
 				1A9999999999999999999994 /* ColorTokens.swift in Sources */,
 				1A9999999999999999999991 /* LayoutWrappers.swift in Sources */,
 				8B3E220D82BB34B3306DE9E2 /* DependencyContainer.swift in Sources */,
@@ -288,7 +347,9 @@
 				1A5555555555555555555555 /* CalendarRootView.swift in Sources */,
 				1A7777777777777777777777 /* ProfileRootView.swift in Sources */,
 				1A6666666666666666666666 /* ProgressRootView.swift in Sources */,
+				1AB444444444444444444444 /* SessionTokenStore.swift in Sources */,
 				1A4444444444444444444444 /* SocialRootView.swift in Sources */,
+				1AB333333333333333333333 /* SupabaseClient.swift in Sources */,
 				1A3333333333333333333333 /* WorkoutRootView.swift in Sources */,
 				1A8888888888888888888888 /* WorkoutRootViewModel.swift in Sources */,
 				411AE6CB2FDB2FC272E27C34 /* RootView.swift in Sources */,
@@ -299,6 +360,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AB666666666666666666666 /* AppConfigTests.swift in Sources */,
+				1AB777777777777777777777 /* AuthSessionManagerTests.swift in Sources */,
+				1AB888888888888888888888 /* SupabaseClientTests.swift in Sources */,
 				1ATTTTTTTTTTTTTTTTTTTTTT /* WorkoutRootViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
