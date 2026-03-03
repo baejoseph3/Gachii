@@ -11,6 +11,7 @@ if matches=$(rg -n "$legacy_symbol_pattern" \
     --glob '!OriginalFiles/**' \
     --glob '!.git/**' \
     --glob '!Docs/Phase0_Discovery_Blueprint.md' \
+    --glob '!Docs/Phase1_Foundation_Report.md' \
     .); then
   echo "❌ Found disallowed legacy workout-home references:"
   echo "$matches"
@@ -22,6 +23,19 @@ invalid_files=$(find iOSApp/Features/Workout -type f -name '*.swift' ! -name 'Wo
 if [[ -n "$invalid_files" ]]; then
   echo "❌ Found non-conforming Swift files under iOSApp/Features/Workout/:"
   echo "$invalid_files"
+  exit 1
+fi
+
+
+echo "Checking canonical feature map (Workout/Social/Calendar/Progress/Profile only)..."
+if [[ -d iOSApp/Features/Home ]]; then
+  echo "❌ Found deprecated iOSApp/Features/Home directory. Workout-home must live under WorkoutView artifacts."
+  exit 1
+fi
+
+if home_matches=$(rg -n "\bHomeView(Model)?\b" iOSApp --glob '!iOSApp/Gachii.xcodeproj/**'); then
+  echo "❌ Found deprecated HomeView symbols; use WorkoutView artifacts instead:"
+  echo "$home_matches"
   exit 1
 fi
 
